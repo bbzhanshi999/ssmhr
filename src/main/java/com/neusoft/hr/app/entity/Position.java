@@ -1,0 +1,41 @@
+package com.neusoft.hr.app.entity;
+
+public class Position extends BaseEntity<Position> {
+
+    private String posName;
+    private String posCode;
+    private Double posSalary;
+
+    public Position(Long posId, String posName) {
+        this.id = posId;
+        this.posName = posName;
+    }
+    public Position() {
+        super();
+    }
+
+
+    public String getPosName() {
+        return posName;
+    }
+
+    public void setPosName(String posName) {
+        this.posName = posName;
+    }
+
+    public String getPosCode() {
+        return posCode;
+    }
+
+    public void setPosCode(String posCode) {
+        this.posCode = posCode;
+    }
+
+    public Double getPosSalary() {
+        return posSalary;
+    }
+
+    public void setPosSalary(Double posSalary) {
+        this.posSalary = posSalary;
+    }
+}

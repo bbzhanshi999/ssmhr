@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.hr.app.dao.UserDao">
+
+    <sql id="fields">
+            id,
+            username,
+            password,
+            name,
+            phone,
+            del_flag delFlag,
+            create_time  createTime
+    </sql>
+
+    <select id="getById" resultType="com.neusoft.hr.app.entity.User">
+        SELECT
+          <include refid="fields"/>
+        FROM users WHERE id = #{id} and del_flag!='1'
+    </select>
+
+    <select id="get" resultType="com.neusoft.hr.app.entity.User">
+        SELECT
+        <include refid="fields"/>
+        FROM users WHERE username = #{username} and password=#{password} and del_flag!='1'
+    </select>
+
+</mapper>
