@@ -1,5 +1,8 @@
 package com.neusoft.hr.app.entity;
 
+import com.neusoft.hr.sys.entity.BaseEntity;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -14,9 +17,11 @@ public class Talent extends BaseEntity<Talent> {
     private String identity;
     private Long departId;
     private Long posId;
+
     private Date employDate;
     private Date unemployDate;
     private Date startupDate;
+
     private String talentSource;
     private String politicsStatus;
     private String marriage;

@@ -1,4 +1,4 @@
-package com.neusoft.hr.app.entity;
+package com.neusoft.hr.sys.entity;
 
 import java.util.Date;
 

@@ -1,6 +1,7 @@
 package com.neusoft.hr.sys.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.neusoft.hr.sys.Convertor.DateConverter;
 import com.neusoft.hr.sys.interceptor.AuthInterceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -12,6 +13,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -48,6 +51,16 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         viewResolver.setSuffix(".jsp");
         registry.viewResolver(viewResolver);
     }
+
+    /**
+     * 配置公用字符串转日期
+     * @param registry
+     */
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(new DateConverter());
+    }
+
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {

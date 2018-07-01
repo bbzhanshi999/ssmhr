@@ -1,6 +1,6 @@
 package com.neusoft.hr.app.entity;
 
-import java.util.Date;
+import com.neusoft.hr.sys.entity.BaseEntity;
 
 /**
  * Created by Administrator on 2018/6/29.

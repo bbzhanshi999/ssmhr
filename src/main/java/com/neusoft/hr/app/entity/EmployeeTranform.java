@@ -1,5 +1,7 @@
 package com.neusoft.hr.app.entity;
 
+import com.neusoft.hr.sys.entity.BaseEntity;
+
 import java.util.Date;
 
 public class EmployeeTranform extends BaseEntity<EmployeeTranform> {

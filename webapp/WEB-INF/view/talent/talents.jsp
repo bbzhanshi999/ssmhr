@@ -17,14 +17,14 @@
 <script>
     //进入创建人才信息的页面
     function createTalent() {
-        window.location.href="${ctx}/talent/modify?type=create&"+Math.random();
+        window.location.href="${ctx}/talent/create?"+Math.random();
     }
 
     function updateTalent() {
 
         var selectedTr = $('table.table tbody tr.selected');
         if(selectedTr&&selectedTr.length>0){
-            window.location.href="${ctx}/talent/modify?type=update&id="+selectedTr.find('td')[0].innerHTML+"&"+Math.random();
+            window.location.href="${ctx}/talent/update/"+selectedTr.find('td')[0].innerHTML+"?"+Math.random();
         }else{
             alert('请选择一行数据');
         }
@@ -33,7 +33,7 @@
     function deleteTalent() {
         var selectedTr = $('table.table tbody tr.selected');
         if(selectedTr&&selectedTr.length>0){
-            window.location.href="${ctx}/talent/modify?type=delete&id="+selectedTr.find('td')[0].innerHTML+"&"+Math.random();
+            window.location.href="${ctx}/talent/delete/"+selectedTr.find('td')[0].innerHTML+"?"+Math.random();
         }else{
             alert('请选择一行数据');
         }
@@ -64,7 +64,7 @@
                 <div class="panel">
                     <div class="panel-heading" style="padding-bottom: 0px !important;">
                         <div class="row">
-                            <form id="talentForm" action="${ctx}/talent/page" method="post">
+                            <form id="talentForm" action="${ctx}/talent" method="post">
                                 <div class="col-md-2">
                                     <input type="text" name="name" value="${talent.name}"
                                            class="form-control" placeholder="输入姓名">
@@ -82,15 +82,15 @@
                                     </button>
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="button" class="btn btn-success btn-sm" onclick="createTalent()" >新增人才信息
+                                    <button type="button" class="btn btn-success btn-sm" onclick="createTalent()" >新增
                                     </button>
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="button" class="btn btn-info btn-sm" onclick="updateTalent()">修改人才信息
+                                    <button type="button" class="btn btn-info btn-sm" onclick="updateTalent()">修改
                                     </button>
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="deleteTalent()">删除人才信息
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="deleteTalent()">删除
                                     </button>
                                 </div>
                             </form>
@@ -121,7 +121,7 @@
                                         <td style="display:none">${talent.id}</td>
                                         <td>${talent.name}</td>
                                         <td>${'1' eq talent.sexual?'男':'女'}</td>
-                                        <td>${talent.birthday}</td>
+                                        <td><fmt:formatDate value="${talent.birthday}" pattern="yyyy-MM-dd"/></td>
                                         <td>${talent.department.departName}</td>
                                         <td>${talent.position.posName}</td>
                                         <td>${'1' eq talent.marriage?'已婚':'未婚'}</td>
@@ -129,7 +129,7 @@
                                         <td>${talent.gradInst}</td>
                                         <td>${talent.profession}</td>
                                         <td>${talent.talentSource}</td>
-                                        <td>${talent.startupDate}</td>
+                                        <td><fmt:formatDate value="${talent.startupDate}" pattern="yyyy-MM-dd"/></td>
                                         <td>
                                             <c:choose>
                                                 <c:when test="${'0' eq talent.status}">

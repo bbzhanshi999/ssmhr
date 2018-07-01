@@ -1,6 +1,6 @@
 package com.neusoft.hr.sys.service;
 
-import com.neusoft.hr.app.entity.BaseEntity;
+import com.neusoft.hr.sys.entity.BaseEntity;
 import com.neusoft.hr.sys.dao.BaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,7 +36,7 @@ public class BaseService <E extends BaseEntity<E>,D extends BaseDao<E>> {
     }
 
     public void save(E e){
-        if(e.getId()!=null){
+        if(e.getId()==null){
             dao.insert(e);
         }else{
             dao.update(e);

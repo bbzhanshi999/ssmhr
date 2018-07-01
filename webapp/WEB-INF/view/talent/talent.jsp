@@ -15,7 +15,7 @@
                 <div class="panel" >
                     <div class="panel-heading row">
                         <div class="col-md-6">
-                            <form class="form-auth-small" action="${ctx}/talent/modify?type=save" method="post">
+                            <form class="form-auth-small" action="${ctx}/talent/save" method="post">
                                 <input type="hidden" value="${talent!=null?talent.id:''}" name="id">
                                 <div class="form-group">
                                     <label for="name" class="">姓名：</label>
@@ -38,7 +38,7 @@
                                     <label for="birthday" class="">生日：</label>
                                     <input data-provide="datepicker" class="form-control" data-date-format="yyyy-mm-dd"
                                            placeholder="生日" type="text" name="birthday" id="birthday"
-                                           value="${talent!=null?talent.birthday:''}">
+                                           value="<fmt:formatDate value="${talent.birthday}" pattern="yyyy-MM-dd"/>">
                                 </div>
                                 <div class="form-group">
                                     <label for="identity" class="">身份证：</label>
@@ -65,19 +65,19 @@
                                     <label for="employDate" class="">入职日期：</label>
                                     <input data-provide="datepicker" class="form-control" data-date-format="yyyy-mm-dd"
                                            placeholder="入职日期" type="text" name="employDate" id="employDate"
-                                           value="${talent!=null?talent.employDate:''}">
+                                           value="<fmt:formatDate value="${talent.employDate}" pattern="yyyy-MM-dd"/>">
                                 </div>
                                 <div class="form-group">
                                     <label for="unemployDate" class="">离职日期：</label>
                                     <input data-provide="datepicker" class="form-control" data-date-format="yyyy-mm-dd"
                                            placeholder="离职日期" type="text" name="unemployDate" id="unemployDate"
-                                           value="${talent!=null?talent.unemployDate:''}">
+                                           value="<fmt:formatDate value="${talent.unemployDate}" pattern="yyyy-MM-dd"/>">
                                 </div>
                                 <div class="form-group">
                                     <label for="startupDate" class="">开始工作日期：</label>
                                     <input data-provide="datepicker" class="form-control" data-date-format="yyyy-mm-dd"
                                            placeholder="开始工作日期" type="text" name="startupDate" id="startupDate"
-                                           value="${talent!=null?talent.startupDate:''}">
+                                           value="<fmt:formatDate value="${talent.startupDate}" pattern="yyyy-MM-dd"/>">
                                 </div>
                                 <div class="form-group">
                                     <label for="talentSource" class="">人才来源：</label>
@@ -87,7 +87,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="politicsStatus" class="">人才来源：</label>
+                                    <label for="politicsStatus" class="">政治面貌</label>
                                     <select class="form-control " name="politicsStatus" id="politicsStatus">
                                         <option value="普通公民" ${talent!=null&&talent.politicsStatus eq '普通公民'?'selected':''}>普通公民</option>
                                         <option value="共青团员" ${talent!=null&&talent.politicsStatus eq '共青团员'?'selected':''}>共青团员</option>

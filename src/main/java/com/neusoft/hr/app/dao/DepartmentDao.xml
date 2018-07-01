@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.hr.app.dao.DepartmentDao">
+
+    <sql id="departmentColumns">
+            id,
+            depart_name departName,
+            depart_code departCode,
+            depart_type departType,
+            depart_phone departPhone,
+            del_flag delFlag
+    </sql>
+
+    <select id="findAll" resultType="com.neusoft.hr.app.entity.Department">
+          select <include refid="departmentColumns"/>
+          from departments where del_flag!='1'
+    </select>
+
+</mapper>

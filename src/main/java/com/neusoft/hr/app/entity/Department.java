@@ -1,5 +1,7 @@
 package com.neusoft.hr.app.entity;
 
+import com.neusoft.hr.sys.entity.BaseEntity;
+
 public class Department extends BaseEntity<Department> {
 
     private String departName;

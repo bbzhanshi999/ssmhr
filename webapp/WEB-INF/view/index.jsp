@@ -65,19 +65,19 @@
         <div class="sidebar-scroll">
             <nav>
                 <ul class="nav">
-                    <li><a href="#" data-href="${ctx}/position/page" class="active"><i class="lnr lnr-home"></i> <span>岗位管理</span></a>
+                    <li><a href="#" data-href="${ctx}/position" class="active"><i class="lnr lnr-home"></i> <span>岗位管理</span></a>
                     </li>
-                    <li><a href="#" data-href="${ctx}/department/page" class=""><i class="lnr lnr-code"></i> <span>部门管理</span></a></li>
-                    <li><a href="#" data-href="${ctx}/user/page" class=""><i class="lnr lnr-chart-bars"></i> <span>用户管理</span></a></li>
-                    <li><a href="#" data-href="${ctx}/talent/page" class=""><i class="lnr lnr-cog"></i> <span>人才信息管理</span></a></li>
+                    <li><a href="#" data-href="${ctx}/department" class=""><i class="lnr lnr-code"></i> <span>部门管理</span></a></li>
+                    <li><a href="#" data-href="${ctx}/user" class=""><i class="lnr lnr-chart-bars"></i> <span>用户管理</span></a></li>
+                    <li><a href="#" data-href="${ctx}/talent" class=""><i class="lnr lnr-cog"></i> <span>人才信息管理</span></a></li>
                     <li>
                         <a href="#employee_transform" data-toggle="collapse" class="collapsed"><i
                                 class="lnr lnr-file-empty"></i> <span>员工流动管理</span> <i
                                 class="icon-submenu lnr lnr-chevron-left"></i></a>
                         <div id="employee_transform" class="collapse ">
                             <ul class="nav">
-                                <li><a data-href="${ctx}/employee/page" href="#" class="">员工调动</a></li>
-                                <li><a href="#" data-href="${ctx}/transform/page" class="">流转查询</a></li>
+                                <li><a data-href="${ctx}/employee" href="#" class="">员工调动</a></li>
+                                <li><a href="#" data-href="${ctx}/transform" class="">流转查询</a></li>
                             </ul>
                         </div>
                     </li>
