@@ -13,12 +13,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -33,6 +35,7 @@ import java.util.List;
 @ComponentScan("com.neusoft.hr.app") //相当于<context:component-scan base-package="com.neusoft.hr.app"
 @EnableTransactionManagement // <tx:annotation-driven />
 @MapperScan("com.neusoft.hr.app.dao")//Mybatis mapper.class的位置
+@EnableRedisHttpSession
 public class AppConfig extends WebMvcConfigurerAdapter {
 
 
@@ -92,6 +95,10 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         super.configureDefaultServletHandling(configurer);
     }
 
+    /**
+     * 配置拦截器
+     * @param registry
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new AuthInterceptor())
@@ -137,5 +144,14 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return dataSourceTransactionManager;
     }
 
+
+    @Bean
+    public JedisConnectionFactory connectionFactory() {
+        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
+        jedisConnectionFactory.setHostName("127.0.0.1");
+        jedisConnectionFactory.setPort(6379);
+        jedisConnectionFactory.setPassword("");
+        return jedisConnectionFactory;
+    }
 
 }

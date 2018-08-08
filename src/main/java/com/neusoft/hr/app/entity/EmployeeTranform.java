@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class EmployeeTranform extends BaseEntity<EmployeeTranform> {
 
+  private static final long serialVersionUID = 1L;
   private String transType;
   private Long inDepartid;
   private Long outDepartId;

@@ -33,7 +33,7 @@
             <id column="depart_id" property="id"/>
             <result column="depart_name" property="departName"/>
         </association>
-        <association property="position" javaType="com.neusoft.hr.app.entity.Position">
+        <association property="position" javaType="com.neusoft.hr.app.entity.Position" >
             <id column="pos_id" property="id"/>
             <result column="pos_name" property="posName"/>
         </association>
@@ -60,6 +60,43 @@
         </where>
     </select>
 
+    <select id="getPage" resultMap="talentMap">
+        select
+        <include refid="talentMapColumns"/>
+        from talents t
+        left join departments d on d.id = t.depart_id
+        left join positions p on p.id = t.pos_id
+        <where>
+            t.del_flag != '1'
+            <if test="condition!=null and condition.identity!=null and condition.identity!=''">
+                AND t.identity = #{condition.identity}
+            </if>
+            <if test="condition!=null and condition.name!=null and condition.name!=''">
+                AND t.name like concat("%",#{condition.name},"%")
+            </if>
+            <if test="condition!=null and  condition.tCode!=null and condition.tCode !=''">
+                AND t.t_code = #{condition.tCode}
+            </if>
+        </where>
+        limit #{start},#{pageSize}
+    </select>
+
+    <select id="totalCount" resultType="integer">
+        select count(1) as "count" from talents
+        <where>
+            del_flag != '1'
+            <if test="condition!=null and condition.identity!=null and condition.identity!=''">
+                AND identity = #{condition.identity}
+            </if>
+            <if test="condition!=null and condition.name!=null and condition.name!=''">
+                AND name like concat("%",#{condition.name},"%")
+            </if>
+            <if test="condition!=null and  condition.tCode!=null and condition.tCode !=''">
+                AND t_code = #{condition.tCode}
+            </if>
+        </where>
+    </select>
+
     <select id="getById" resultMap="talentMap">
         select
         <include refid="talentMapColumns"/>
@@ -69,6 +106,19 @@
         where
         t.del_flag != '1' and p.del_flag != '1' and d.del_flag != '1'
         and t.id = #{id}
+    </select>
+
+    <select id="departAmount" resultType="java.util.Map">
+        select
+        t.amount,d.depart_name as "departName" from departments d
+        right join (select depart_id,count(1) as 'amount' from talents group by depart_id) t
+        on t.depart_id=d.id
+    </select>
+    <select id="posAmount" resultType="java.util.Map">
+        select
+        t.amount,d.pos_name as "posName" from positions d
+        right join (select pos_id,count(1) as 'amount' from talents group by pos_id) t
+        on t.pos_id=d.id
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id">
@@ -140,4 +190,8 @@
     <update id="delete">
         update talents set del_flag = '1' where id=#{id}
     </update>
+
+
+
+
 </mapper>

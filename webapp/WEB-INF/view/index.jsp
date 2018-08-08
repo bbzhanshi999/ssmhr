@@ -10,7 +10,6 @@
 </head>
 <script>
     $(document).ready(function () {
-
         $('#sidebar-nav a').on('click', function (e) {
             var href = $(this).attr('data-href');
             if(href){
@@ -87,8 +86,8 @@
                                 class="icon-submenu lnr lnr-chevron-left"></i></a>
                         <div id="chart_manager" class="collapse ">
                             <ul class="nav">
-                                <li><a href="#" data-href="${ctx}/departchart/page" class="">部门人员统计</a></li>
-                                <li><a href="#" data-href="${ctx}/postionchart/page" class="">岗位人员</a></li>
+                                <li><a href="#" data-href="${ctx}/talent/statistic/page/department" class="">部门人员统计</a></li>
+                                <li><a href="#" data-href="${ctx}/talent/statistic/page/position" class="">岗位人员</a></li>
                             </ul>
                         </div>
                     </li>
@@ -100,7 +99,7 @@
     <!-- MAIN -->
     <div class="main">
         <!-- MAIN CONTENT -->
-        <iframe id="main" src="http://www.baidu.com.cn" style="height: 85%;width: 100%;border: 0"
+        <iframe id="main" src="${ctx}/talent" style="height: 85%;width: 100%;border: 0"
                 frameborder="no"></iframe>
         <%--<div class="main-content">
             <div class="container-fluid">

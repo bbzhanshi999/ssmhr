@@ -2,6 +2,7 @@ package com.neusoft.hr.sys.service;
 
 import com.neusoft.hr.sys.entity.BaseEntity;
 import com.neusoft.hr.sys.dao.BaseDao;
+import com.neusoft.hr.sys.entity.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -43,5 +44,10 @@ public class BaseService <E extends BaseEntity<E>,D extends BaseDao<E>> {
         }
     }
 
+    public Page<E> getPage(Page<E> page){
+        page.setList(dao.getPage(page));
+        page.setTotalCount(dao.totalCount(page));
+        return page;
+    }
 
 }

@@ -10,6 +10,7 @@ import java.util.Date;
  */
 public class Talent extends BaseEntity<Talent> {
 
+    private static final long serialVersionUID = 1L;
     private String name;
     private String tCode;
     private String sexual;

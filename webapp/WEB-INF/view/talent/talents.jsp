@@ -39,6 +39,12 @@
         }
     }
 
+    function search(){
+        //为了避免在非第一页条件的查询page页仍为1
+        $('#talentForm').find('input[name="pageNum"]').val(1);
+        $('#talentForm').submit();
+    }
+
     $(document).ready(function () {
         $('table.table tbody tr').on('click',function (e) {
             if($(this).hasClass('selected')){
@@ -50,6 +56,15 @@
                 //给被点击的tr加class
                 $(this).addClass('selected');
             }
+        });
+        //分页按钮点击事件
+        $("ul.pager a").on("click",function (e) {
+            if($(this).hasClass("prev")){
+                $('#talentForm input[name="pageNum"]').val(parseInt($('#talentForm input[name="pageNum"]').val())-1);
+            }else{
+                $('#talentForm input[name="pageNum"]').val(parseInt($('#talentForm input[name="pageNum"]').val())+1);
+            }
+            $('#talentForm').submit();
         })
     });
 </script>
@@ -65,6 +80,7 @@
                     <div class="panel-heading" style="padding-bottom: 0px !important;">
                         <div class="row">
                             <form id="talentForm" action="${ctx}/talent" method="post">
+                                <input type="hidden" name="pageNum" value="${page.currentPage}">
                                 <div class="col-md-2">
                                     <input type="text" name="name" value="${talent.name}"
                                            class="form-control" placeholder="输入姓名">
@@ -78,7 +94,7 @@
                                            class="form-control" placeholder="输入工号">
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="submit" class="btn btn-primary btn-sm" >查询
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="search()">查询
                                     </button>
                                 </div>
                                 <div class="col-md-1">
@@ -116,7 +132,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${talents}" var="talent">
+                                <c:forEach items="${page.list}" var="talent">
                                     <tr>
                                         <td style="display:none">${talent.id}</td>
                                         <td>${talent.name}</td>
@@ -147,7 +163,9 @@
                                 </c:forEach>
                             </tbody>
                         </table>
+                        <%--分页显示，调用的是page.toString()--%>${page}
                     </div>
+
                 </div>
                 <!-- END BORDERED TABLE -->
             </div>

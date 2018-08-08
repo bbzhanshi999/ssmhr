@@ -4,6 +4,7 @@ import com.neusoft.hr.sys.entity.BaseEntity;
 
 public class Position extends BaseEntity<Position> {
 
+    private static final long serialVersionUID = 1L;
     private String posName;
     private String posCode;
     private Double posSalary;

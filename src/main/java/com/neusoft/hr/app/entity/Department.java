@@ -4,6 +4,7 @@ import com.neusoft.hr.sys.entity.BaseEntity;
 
 public class Department extends BaseEntity<Department> {
 
+    private static final long serialVersionUID = 1L;
     private String departName;
     private String departCode;
     private String departType;
