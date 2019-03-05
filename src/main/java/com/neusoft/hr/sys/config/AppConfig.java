@@ -70,7 +70,8 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder()
                 .indentOutput(true)
                 .dateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
-        converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
+        MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter(builder.build());
+        converters.add(mappingJackson2HttpMessageConverter);
     }
 
     /**
@@ -126,7 +127,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         //设置数据库连接池
         factoryBean.setDataSource(dataSource());
         //设置mapper.xml文件的位置，如果不设置的话，你需要把mapper.xml放置在于mapper.class相同的位置
-        //factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
+        factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
 
         factoryBean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("classpath:/mybatis-config.xml"));
         return factoryBean.getObject();

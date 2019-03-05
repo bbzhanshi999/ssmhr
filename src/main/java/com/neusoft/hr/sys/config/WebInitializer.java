@@ -25,6 +25,7 @@ public class WebInitializer implements WebApplicationInitializer {
         encodingFilter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST),true,"/*");
 
 
+
     }
 
 }
